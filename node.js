@@ -1,7 +1,6 @@
 (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-    // pick a pattern from the page filename
     var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
     var MODE = ({
       'index.html': 'network',
