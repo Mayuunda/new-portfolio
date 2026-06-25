@@ -39,7 +39,6 @@
       ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
     }
   
-    // ---------- pattern seeders ----------
     function seed() {
       P = [];
       if (MODE === 'network') {
@@ -61,8 +60,7 @@
         for (var d = 0; d < 80; d++) P.push({ x: rnd(0, w), y: rnd(0, h), sp: rnd(.15, .5) * dpr, sway: rnd(0, 6.28), swsp: rnd(.005, .02) });
       }
     }
-  
-    // ---------- pattern renderers ----------
+
     function network() {
       var L = 150 * dpr;
       for (var i = 0; i < P.length; i++) {
@@ -95,7 +93,6 @@
     }
   
     function circuit() {
-      // orthogonal traces to nearest right/below neighbour
       for (var i = 0; i < P.length; i++) {
         var a = P[i], best = null, bd = 1e9;
         for (var j = 0; j < P.length; j++) {
@@ -111,7 +108,7 @@
         var n = P[p]; n.pulse += n.psp; if (n.pulse > 1) n.pulse -= 1;
         ctx.fillStyle = 'rgba(' + INK + ',0.9)';
         ctx.fillRect(n.x - 2.5 * dpr, n.y - 2.5 * dpr, 5 * dpr, 5 * dpr);
-        dot(n.x, n.y, (1 + n.pulse * 4) * dpr, 0.12 * (1 - n.pulse)); // soft pulse ring
+        dot(n.x, n.y, (1 + n.pulse * 4) * dpr, 0.12 * (1 - n.pulse)); 
       }
     }
   
@@ -120,7 +117,6 @@
         var n = P[i]; n.x += n.vx; n.y += n.vy;
         if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1;
       }
-      // connect each node to its 3 nearest -> shifting triangles
       for (var a = 0; a < P.length; a++) {
         var ds = [];
         for (var b = 0; b < P.length; b++) if (b !== a) ds.push({ b: b, d: Math.hypot(P[a].x - P[b].x, P[a].y - P[b].y) });
