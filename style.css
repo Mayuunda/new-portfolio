@@ -173,3 +173,17 @@ main > p { margin-bottom: 18px; }
   .name-svg .draw { animation: none; stroke-dashoffset: 0; }
   .name-svg .node { animation: none; opacity: 1; }
 }
+
+/* Portfolio wordmark and thesis teaser */
+.hero h1 { margin: 0; }
+.hero h1::after { content: none; }
+.wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.thesis-preview { margin-top: 24px; }
+.thesis-preview .subtitle { margin: 0; padding: 0; }
+.thesis-blur { filter: blur(5px); user-select: none; }
+.thesis-preview .thesis-status { margin-top: 12px; }
